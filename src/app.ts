@@ -9,6 +9,7 @@ import { PrismaSessionStore } from "@quixo3/prisma-session-store";
 import expressSession from "express-session";
 import prisma from "./db/prisma";
 import { errorHandler } from "./middleware/allRouteCatch";
+import clientRouter from "./routes/client.routes";
 
 const app: Express = express();
 const PORT = 5000;
@@ -33,6 +34,7 @@ app.use(
 );
 
 app.use("/auth", authRouter);
+app.use("/api", clientRouter);
 app.use(errorHandler);
 app.listen(PORT, () => {
 	console.log("Connected to server on port: ", PORT);
